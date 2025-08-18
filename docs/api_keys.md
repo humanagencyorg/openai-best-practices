@@ -2,19 +2,7 @@
 
 ## Introduction
 
-In addition to standard best practices around using API Keys, OpenAI provides recommendations specific to their environment.
-
-## API Key Safety Basics
-
-There are three core tenets that underpind the practices behind API key safety:
-1. Protect the data and the data integrity of your system.
-2. Prevent unauthorized use of your API keys.
-3. Keep the system available for all users.
-
-In the even of a compromised API Key, your organization could experience the following:
-1. Leakage or theft of sensitive data into external systems.
-2. Unexpected charges on your OpenAI account.
-3. Degradation of service or account restrictions due to bad actors or illegitimate usage of your API account.
+The OpenAI API structure wasn't immediately apparent until I worked through the documentation.  Here are my notes and some best practices around working with the OpenAI API.
 
 ### OpenAI Key Types 
 
@@ -64,6 +52,17 @@ OpenAI recommends the creation of "Service Accounts" to facilitate machine to ma
 
 Service accounts should be used for any deployed or production system that requires strict auditing and tracking of API usage.
 
+## API Key Safety Basics
+
+There are three core tenets that underpind the practices behind API key safety:
+1. Protect the data and the data integrity of your system.
+2. Prevent unauthorized use of your API keys.
+3. Keep the system available for all users.
+
+In the even of a compromised API Key, your organization could experience the following:
+1. Leakage or theft of sensitive data into external systems.
+2. Unexpected charges on your OpenAI account.
+3. Degradation of service or account restrictions due to bad actors or illegitimate usage of your API account.
 
 ### Common API Safety Best Practices
 
