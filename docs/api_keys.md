@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In addition to standard best practices around using API Keys, OpenAI provides recommendations specific to their environment.
+The OpenAI API structure wasn't immediately apparent until I worked through the documentation.  Here are my notes and some best practices around working with the OpenAI API.
 
 ## API Key Safety Basics
 
