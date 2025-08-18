@@ -21,21 +21,26 @@ These keys are non-recoverable.  If an Admin Key is lost or compromised, it must
 
 Since Admin keys have the ability to create API keys and users, it is critical to always assign least privilege, rotate keys regularly, and monitor usage closely.
 
-### Project Keys
+#### Project Keys
 
-Project Keys are scoped to a specific project within an organization.  These keys can be created directly or created via a service account.
+Project Keys are scoped to a specific project within an organization.  These keys can be created directly or created via a service account.  Project keys created per user are best for development and experimentation.  Service account keys are best for deployed applications.
 
 Project Keys are limited in scope to only interact with resources within a given project and also are constrained to the resources of that project.
 
-### Individual Keys (Legacy - DO NOT USE)
+#### User API Keys
 
-Individual api keys are keys issued and scoped to a single individual.  The individual API Key provides API access to every organization and project that the user belongs to.
+Individual api keys are keys issued and scoped to a single individual. There are two types of individual API keys: 
 
-Because the individual API key has such broad cross organization and cross project access, **OpenAI actively discourages the use of this API key**.  The availabilty of this key is soley for the support of legacy applications.
+##### Individual API Key (Legacy - DO NOT USE)
+The individual API Key provides API access to every organization and project that the user belongs to.  Because the individual API key has such broad cross organization and cross project access, **OpenAI actively discourages the use of this API key**.  The availabilty of this key is soley for the support of legacy applications.
 
-According to the [OpenAI API Key Best Practices](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety) and the [OpenAI Terms of Service](https://beta.openai.com/terms-of-use), individual API keys **CANNOT BE SHARED BETWEEN USERS.**  
+This key was previously accessible from the [user profile](https://platform.openai.com/settings/profile?tab=api-keys); however, it appears that is has been removed.
 
 ### OpenAI Best Practices
+
+#### Do Not Share API Keys
+
+According to the [OpenAI API Key Best Practices](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety) and the [OpenAI Terms of Service](https://beta.openai.com/terms-of-use), individual API keys **CANNOT BE SHARED BETWEEN USERS.**  
 
 #### Monitor Key Usage
 Organizational owners can monitor the usage of all individual keys and project keys within their organization from the [Usage Dashboard](https://platform.openai.com/settings/organization/usage).
