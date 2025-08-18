@@ -23,13 +23,11 @@ Since Admin keys have the ability to create API keys and users, it is critical t
 
 #### Project Keys
 
-Project Keys are scoped to a specific project within an organization.  These keys can be created directly or created via a service account.  Project keys created per user are best for development and experimentation.  Service account keys are best for deployed applications.
+Project Keys are scoped to a specific project within an organization.  These keys can be assigned to a user or created via a service account.  Project keys created per user are best for development and experimentation.  Service account keys are best for deployed applications.
 
 Project Keys are limited in scope to only interact with resources within a given project and also are constrained to the resources of that project.
 
-#### User API Keys
-
-Individual api keys are keys issued and scoped to a single individual. There are two types of individual API keys: 
+Note: Project keys assigned to a user cannot be shared between users according to the OpenAI Terms of Service.
 
 ##### Individual API Key (Legacy - DO NOT USE)
 The individual API Key provides API access to every organization and project that the user belongs to.  Because the individual API key has such broad cross organization and cross project access, **OpenAI actively discourages the use of this API key**.  The availabilty of this key is soley for the support of legacy applications.
