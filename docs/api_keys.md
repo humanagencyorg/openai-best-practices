@@ -15,22 +15,22 @@ Let's talk about the differences between these key types and the best practices 
 
 #### Admin Keys
 
-Admin Keys can only be accessed by Organizational owners and their scope is limitede to the [OpenAI Admin API](https://help.openai.com/en/articles/9687866-admin-and-audit-logs-api-for-the-api-platform) which provides the ability to programatically manage users, projects, and billing.
+Admin Keys can only be accessed by Organizational owners and their scope is limited to the [OpenAI Admin API](https://help.openai.com/en/articles/9687866-admin-and-audit-logs-api-for-the-api-platform) which provides the ability to programatically manage users, projects, and billing. Note: these are not "superkeys" and will not work with models (chat, embeddings, etc.).
 
-These keys are non-recoverable.  If an Admin Key is lost or compromised, it must be deleted and a new key created.
+These keys are non-recoverable. If an Admin Key is lost or compromised, it must be deleted and a new key created.
 
 Since Admin keys have the ability to create API keys and users, it is critical to always assign least privilege, rotate keys regularly, and monitor usage closely.
 
 #### Project Keys
 
-Project Keys are scoped to a specific project within an organization.  These keys can be assigned to a user or created via a service account.  Project keys created per user are best for development and experimentation.  Service account keys are best for deployed applications.
+Project Keys are scoped to a specific project within an organization.  These keys can be assigned to a user or created via a service account. Project keys created per user are best for development and experimentation. Service account keys are best for deployed applications.
 
-Project Keys are limited in scope to only interact with resources within a given project and also are constrained to the resources of that project.
+Project Keys are limited in scope to only interact with resources within a given project and also are constrained to the resources of that project. They can also set budget and usage limits at the project level, which is a key part of safe delegation.
 
-Note: Project keys assigned to a user cannot be shared between users according to the OpenAI Terms of Service.
+Note: Project keys assigned to a user cannot be shared between users according to the OpenAI Terms of Service and if a user is removed from the project, their key will stop working.
 
 ##### Individual API Key (Legacy - DO NOT USE)
-The individual API Key provides API access to every organization and project that the user belongs to.  Because the individual API key has such broad cross organization and cross project access, **OpenAI actively discourages the use of this API key**.  The availabilty of this key is soley for the support of legacy applications.
+The individual API Key provides API access to every organization and project that the user belongs to.  Because the individual API key has such broad cross organization and cross project access, **OpenAI actively discourages the use of this API key**.  The availability of this key is solely for the support of legacy applications.
 
 This key was previously accessible from the [user profile](https://platform.openai.com/settings/profile?tab=api-keys); however, it appears that is has been removed.
 
@@ -43,26 +43,30 @@ According to the [OpenAI API Key Best Practices](https://help.openai.com/en/arti
 #### Monitor Key Usage
 Organizational owners can monitor the usage of all individual keys and project keys within their organization from the [Usage Dashboard](https://platform.openai.com/settings/organization/usage).
 
-Monitoring key usage is key to detecting authorized or improper use of the API keys.
+Monitoring key usage is key to detecting unauthorized or improper use of the API keys.
 
 #### Project Keys with Limited Scope and Budget
 Any shared application should leverage a project key.  These keys should be created with a limited scope and limited budget to prevent unexpected charges or API disruption in the event of a leaked key.
 
-Project API keys should be used when experimenting or spiking functionality out within a project.
+Project API keys should be used when experimenting or spiking functionality out within a project. Instead, service account keys (rather than individual user project keys) are strongly preferred for any automated/deployed use cases because of revocability and auditability.
 
 #### Use Service Accounts for project deployments
 OpenAI recommends the creation of "Service Accounts" to facilitate machine to machine API usage instead of creating raw API keys within a project.  These accounts represent a non-human user.  These accounts are listed in line with the other users on the project and are provided a unique API key for accessing the system.
 
 Service accounts should be used for any deployed or production system that requires strict auditing and tracking of API usage.
 
+#### Incident Response
+If a key is compromised, you should revoke immediately, generate a new one, and then check usage logs.
+
+
 ## API Key Safety Basics
 
-There are three core tenets that underpind the practices behind API key safety:
+There are three core tenets that underpin the practices behind API key safety:
 1. Protect the data and the data integrity of your system.
 2. Prevent unauthorized use of your API keys.
 3. Keep the system available for all users.
 
-In the even of a compromised API Key, your organization could experience the following:
+In the event of a compromised API Key, your organization could experience the following:
 1. Leakage or theft of sensitive data into external systems.
 2. Unexpected charges on your OpenAI account.
 3. Degradation of service or account restrictions due to bad actors or illegitimate usage of your API account.
@@ -75,7 +79,7 @@ Users and API keys should be assigned the minimum level of access required to pe
 
 #### Regular Rotation
 
-API keys should be rotated regularly to minimize the risk of long-term exposure.  A regular rotation schedule should be established and followed.
+API keys should be rotated regularly to minimize the risk of long-term exposure. They should align with the sensitivity of the project. Many organizations adopt a 60–90 day rotation policy.
 
 #### Secure Storage
 
@@ -100,5 +104,5 @@ Sharing API keys between users or applications increases the risk of unauthorize
 
 #### Client Side Exposure
 
-Exposing API keys in client-side code (e.g., JavaScript running in a web browser) can lead to easy extraction by malicious actors.  This also includes embedding keys in mobile applications or desktop applications where they can be decompiled and API KEY extracted.
+Exposing API keys in client-side code (e.g., JavaScript running in a web browser) can lead to easy extraction by malicious actors.  This also includes embedding keys in mobile applications or desktop applications where they can be decompiled and API KEY extracted. Best practice is to call the API via a backend proxy rather than embedding keys in client applications.
 
